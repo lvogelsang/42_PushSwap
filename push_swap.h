@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:23:45 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/17 14:23:02 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/17 15:56:49 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,26 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-# define MAX_INT	2147483647
-# define MIN_INT	-2147483648
+# define SA	1
+# define SB	1
+# define RA	2
+# define RB	2
+# define RRA	3
+# define RRB	3
+# define PB	4
 
+void    *create_stacks(int argc, char **argv);
 void	create_stack_a(int argc, char **argv, char **stack_a);
+void    create_stack_b(int argc, char **stack_b);
 
-int	standard_error(int argc, char **argv);
+int	errors(int argc, char **argv);
 int	error_non_integer(int argc, char **argv);
 int     error_min_max_integer(int argc, char **argv);
 int     error_duplicate(int argc, char **argv);
 
+void	push_swap(char **stack_a, char **stack_b);
+
+int     stack_sorted_ascend(char **stack);
+int     stack_sorted_descend(char **stack);
+int     stack_empty(char **stack);
 #endif

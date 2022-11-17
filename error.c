@@ -6,13 +6,13 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:19:55 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/17 14:23:09 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/17 15:05:20 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	standard_error(int argc, char **argv)
+int	errors(int argc, char **argv)
 {
 	if (error_non_integer(argc, argv) == 1)
 		return (1);
