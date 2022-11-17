@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 15:43:33 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/17 15:57:39 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/17 16:49:33 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,49 @@ int	stack_sorted_descend(char **stack)
 
 int	stack_empty(char **stack)
 {
-	if (stack[0][0] == 'x')
+	if (stack_length(stack) == 0)
 		return (1);
 	return (0);
+}
+
+int	stack_length(char **stack)
+{
+	int	i;
+
+	i = 0
+	while (stack[i] && stack[i][0] != 'x')
+		i++;
+	return (i);
+}
+
+int	stack_max_value(char **stack)
+{
+	int	i;
+	int	max;
+
+	i = 0;
+	max = ft_atoi(stack[0]);
+	while (stack[i] && stack[i][0] != 'x')
+	{
+		if (ft_atoi(stack[i]) > max)
+			max = ft_atoi(stack[i]);
+		i++;
+	}
+	return (max);
+}
+
+int	stack_min_value(char **stack)
+{
+	int	i;
+	int	min;
+
+	i = 0;
+	min = ft_atoi(stack[0]);
+	while (stack[i] && stack[i][0] != 'x')
+	{
+		if (ft_atoi(stack[i]) < min)
+			min = ft_atoi(stack[i]);
+		i++;
+	}
+	return (min);
 }
