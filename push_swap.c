@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:05:28 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/17 16:02:28 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/18 08:39:33 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	push_swap(char **stack_a, char **stack_b)
 
 	while (1)
 	{
-		if (stack_sorted_ascend(stack_a) == 1 && stack_empty(stack_b) == 1)
+		if (stack_sorted_ascend(stack_a) == 1 && stack_length(stack_b) == 0)
 			break;
 		if (stack_sorted_ascend(stack_a) == 1 && \
 			stack_sorted_descend(stack_b) == 1)

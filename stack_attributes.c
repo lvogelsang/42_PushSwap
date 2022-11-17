@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 15:43:33 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/17 16:49:33 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/18 08:40:44 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,6 @@ int	stack_sorted_descend(char **stack)
 		i++;
 	}
 	return (1);
-}
-
-int	stack_empty(char **stack)
-{
-	if (stack_length(stack) == 0)
-		return (1);
-	return (0);
 }
 
 int	stack_length(char **stack)
