@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:58:44 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/18 14:57:56 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/18 15:36:29 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,3 +64,5 @@ void	push_swap(char **stack_a, char **stack_b)
 		}
 	}
 }
+
+// Search algorithm moving the ten highest numbers over. Execute this code untilB is sorted descendingly. Redo until A is ascend and B is descend.

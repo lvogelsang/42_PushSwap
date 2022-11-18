@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:05:28 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/18 15:04:57 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/18 15:24:20 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,6 @@ void	push_swap_a(char **stack_a, int operation)
 
 void	push_a_b(char **stack_a, char **stack_b, int x, int y)
 {
-	char	*temp;
-
 	if (x == 4 && stack_sorted_ascend(stack_a) == 0)
 	{
 		push_swap_b(stack_b, y);

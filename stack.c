@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:13:18 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/18 12:05:25 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/18 15:31:55 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	create_stack_a(int argc, char **argv, char **stack_a)
 	}
 	stack_a[i] = NULL;
 }
+// Normalize stack_a.
 
 void	create_stack_b(int argc, char **stack_b)
 {
