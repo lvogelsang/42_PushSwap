@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 15:43:33 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/18 10:08:35 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/18 14:57:03 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	stack_sorted_ascend(char **stack)
 	int	i;
 
 	i = 0;
-	while (stack[i + 1] && stack[i][0] != 'x')
+	while (stack[i + 1] && stack[i + 1][0] != 'x')
 	{
 		if (ft_atoi(stack[i]) > ft_atoi(stack[i + 1]))
 			return (0);
@@ -31,7 +31,7 @@ int	stack_sorted_descend(char **stack)
 	int	i;
 
 	i = 0;
-	while (stack[i + 1] && stack[i][0] != 'x')
+	while (stack[i + 1] && stack[i + 1][0] != 'x')
 	{
 		if (ft_atoi(stack[i]) < ft_atoi(stack[i + 1]))
 			return (0);

@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:23:45 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/18 12:07:39 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/18 14:56:10 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define RRA	3
 # define RRB	3
 # define PB	4
+# define PA 4
 
 void    *create_stacks(int argc, char **argv);
 void	create_stack_a(int argc, char **argv, char **stack_a);
@@ -49,12 +50,13 @@ int		operation_a(char **stack_a);
 
 void	push_swap_a_b(char **stack_a, char **stack_b, int operation);
 void	push_swap_b(char **stack_b, int operation);
-void	push_swap_a(char **stack_a, char **stack_b, int operation);
+void	push_swap_a(char **stack_a, int operation);
 
 void	swap(char **stack);
 void	rotate(char **stack);
 void	reverse_rotate(char **stack);
 void	push_a(char **stack_b, char **stack_a);
 void	push_b(char **stack_a, char **stack_b);
+void	push_a_b(char **stack_a, char **stack_b, int x, int y);
 
 #endif
