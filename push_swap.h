@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:23:45 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/18 10:53:27 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/18 11:39:47 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,10 @@ int		stack_min_value(char **stack);
 
 int		operation_b(char **stack_b);
 int		operation_a(char **stack_a);
+
+void	swap(char **stack);
+void	rotate(char **stack);
+void	reverse_rotate(char **stack);
+void	push_a(char **stack_a, char **stack_b);
 
 #endif
