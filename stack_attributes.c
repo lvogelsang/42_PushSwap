@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 15:43:33 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/18 08:40:44 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/18 10:08:35 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	stack_length(char **stack)
 {
 	int	i;
 
-	i = 0
+	i = 0;
 	while (stack[i] && stack[i][0] != 'x')
 		i++;
 	return (i);

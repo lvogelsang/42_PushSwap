@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:23:45 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/17 15:56:49 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/18 10:53:27 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,20 @@ void    *create_stacks(int argc, char **argv);
 void	create_stack_a(int argc, char **argv, char **stack_a);
 void    create_stack_b(int argc, char **stack_b);
 
-int	errors(int argc, char **argv);
-int	error_non_integer(int argc, char **argv);
-int     error_min_max_integer(int argc, char **argv);
-int     error_duplicate(int argc, char **argv);
+int		errors(int argc, char **argv);
+int		error_non_integer(int argc, char **argv);
+int		error_min_max_integer(int argc, char **argv);
+int		error_duplicate(int argc, char **argv);
 
 void	push_swap(char **stack_a, char **stack_b);
 
 int     stack_sorted_ascend(char **stack);
 int     stack_sorted_descend(char **stack);
-int     stack_empty(char **stack);
+int		stack_length(char **stack);
+int		stack_max_value(char **stack);
+int		stack_min_value(char **stack);
+
+int		operation_b(char **stack_b);
+int		operation_a(char **stack_a);
+
 #endif
