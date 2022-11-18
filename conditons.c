@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:57:58 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/18 11:12:22 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/18 12:06:40 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 int	operation_b(char **stack_b)
 {
 	int	operation;
-	int	max;
+	int	min;
 	int	first;
 	int	second;
 	int	last;
 
 	operation = 0;
-	if (stack.length(stack_b) == 0 || stack.length(stack_b) == 1)
+	if (stack_length(stack_b) == 0 || stack_length(stack_b) == 1)
 		return (operation);
 	min = stack_min_value(stack_b);
 	first = ft_atoi(stack_b[0]);
@@ -46,7 +46,7 @@ int	operation_a(char **stack_a)
 	int	last;
 
 	operation = 0;
-	if (stack.length(stack_a) == 0 || stack.length(stack_a) == 1)
+	if (stack_length(stack_a) == 0 || stack_length(stack_a) == 1)
 		return (operation);
 	max = stack_max_value(stack_a);
 	first = ft_atoi(stack_a[0]);

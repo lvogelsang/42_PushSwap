@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:11:28 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/18 11:39:44 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/18 12:06:49 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,35 @@ void	push_a(char **stack_b, char **stack_a)
 		i--;
 	}
 	stack_a[0] = stack_b[0];
+	len = stack_length(stack_b);
+	i = 0;
+	while (i < len)
+	{
+		stack_b[i] = stack_b[i + 1];
+		i++;
+	}
+	ft_printf("%s\n", "pa");
 }
 
 void	push_b(char **stack_a, char **stack_b)
 {
+	int	len;
+	int	i;
 
+	len = stack_length(stack_b);
+	i = len;
+	while (i > 0)
+	{
+		stack_b[i] = stack_b[i - 1];
+		i--;
+	}
+	stack_b[0] = stack_a[0];
+	len = stack_length(stack_a);
+	i = 0;
+	while (i < len)
+	{
+		stack_a[i] = stack_a[i + 1];
+		i++;
+	}
+	ft_printf("%s\n", "pb");
+}

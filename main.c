@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:58:44 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/18 11:33:37 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/18 12:08:19 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 	create_stacks(argc, argv);
 	return (0);
 }
-/*
+
 void	push_swap(char **stack_a, char **stack_b)
 {
 	int	x;
@@ -46,8 +46,8 @@ void	push_swap(char **stack_a, char **stack_b)
 			else
 			{
 				push_swap_b(stack_b, x);
-				push_swap_a(stack_a, y);
+				push_swap_a(stack_a, stack_b, y);
 			}
 		}
 	}
-}*/
+}
