@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:05:28 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/18 15:43:43 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/23 10:58:49 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,24 +69,5 @@ void	push_swap_a(char **stack_a, int operation)
 	{
 		reverse_rotate(stack_a);
 		ft_printf("%s\n", "rra");
-	}
-}
-
-void	push_a_b(char **stack_a, char **stack_b, int x, int y)
-{
-	if (x == 4 && stack_sorted_ascend(stack_a) == 0)
-	{
-		push_swap_b(stack_b, y);
-		push_b(stack_a, stack_b);
-	}
-	else if (y == 4 && stack_sorted_descend(stack_b) == 0)
-	{
-		push_swap_a(stack_a, x);
-		push_a(stack_b, stack_a);
-	}
-	else
-	{
-		push_swap_a(stack_a, x);
-		push_swap_b(stack_b, y);
 	}
 }
