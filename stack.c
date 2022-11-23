@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:13:18 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/23 13:24:33 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/23 14:55:32 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	*create_stacks(int argc, char **argv)
 	return (0);
 }
 
-void	*create_stack_a(int argc, char **argv, char **stack_a)
+void	create_stack_a(int argc, char **argv, char **stack_a)
 {
 	char	**stack_a_copy;
 	int	i;
@@ -43,23 +43,37 @@ void	*create_stack_a(int argc, char **argv, char **stack_a)
 		i++;
 	}
 	stack_a[i] = NULL;
-	stack_a_copy = (char **)malloc(argc * sizeof(char *));
-	if (stack_a_copy == NULL)
+	create_stack_a_copies(stack_a, argc);	
+}
+
+void	*create_stack_a_copies(char **stack_a, int argc)
+{
+	char	**stack_a_index;
+	char	**stack_a_reduced;
+	int	i;
+
+	stack_a_index = (char **)malloc(argc * sizeof(char *));
+	if (stack_a_index == NULL)
+		return (0);
+	stack_a_reduced = (char **)malloc(argc * sizeof(char *));
+	if (stack_a_reduced == NULL)
 		return (0);
 	i = 0;
 	while (i < argc - 1)
 	{
-		stack_a_copy[i] = stack_a[i];
+		stack_a_index[i] = stack_a[i];
+		stack_a_reduced[i] = stack_a[i];
 		i++;
 	}
-	stack_a_copy[i] = NULL;
-	normalize_stack_a(stack_a, stack_a_copy);
-	free (stack_a_copy);
+	stack_a_index[i] = NULL;
+	stack_a_reduced[i] = NULL;
+	normalize_stack_a(stack_a, stack_a_index, stack_a_reduced);
+	free (stack_a_index);
+	free (stack_a_reduced);
 	return (0);
 }
-// Normalize stack_a.
 
-void	normalize_stack_a(char **stack_a, char **stack_a_copy)
+void	normalize_stack_a(char **stack_a, char **stack_a_index, char **stack_a_reduced)
 {
 	int		i;
 	int	j;
@@ -70,21 +84,38 @@ void	normalize_stack_a(char **stack_a, char **stack_a_copy)
 	i = 0;
 	while (i < len)
 	{
-		min = stack_min_value(stack_a);
+		min = stack_min_value(stack_a_reduced);
 		j = 0;
-		while (j < stack_length(stack_a))
+		while (j < len)
 		{
-			if (ft_atoi(stack_a_copy[j]) == min)
+			if (ft_atoi(stack_a_index[j]) == min)
 			{
 				stack_a[j] = ft_itoa(i);
-				//remove min from stack.
+				stack_remove_min(stack_a_reduced, min);
 				break;
 			}
 			j++;
 		}
 		i++;
 	}
-	normalize_stack_a_2(stack_a, stack_a_copy, len, min);
+//	normalize_stack_a_2(stack_a, stack_a_copy, len, min);
+}
+
+void	stack_remove_min(char **stack_a_reduced, int min)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	while (ft_atoi(stack_a_reduced[i]) != min)
+			i++;
+	len = stack_length(stack_a_reduced);
+	while (i < len - 1)
+	{
+		stack_a_reduced[i] = stack_a_reduced[i + 1];
+		i++;
+	}
+	stack_a_reduced[i] = "x";
 }
 // move forward adn equal the small numbe to x;
 
@@ -108,7 +139,7 @@ void	normalize_stack_a_2(char **stack_a, char **stack_a_copy, int len, int min)
 		j = 0;
 		while (j < len)
 		{
-			if (ft_atoi(stack_a_copy[j]) >= min && num >= ft_atoi(stack_a_copy[j]))
+			if (ft_atoi(stack_a_copy[j]) > min && num > ft_atoi(stack_a_copy[j]))
 			{
 				num = ft_atoi(stack_a_copy[j]);
 				index = j;

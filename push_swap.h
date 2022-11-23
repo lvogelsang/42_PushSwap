@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:23:45 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/23 13:24:17 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/23 14:54:47 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@
 # define PA 4
 
 void    *create_stacks(int argc, char **argv);
-void	*create_stack_a(int argc, char **argv, char **stack_a);
-void	normalize_stack_a(char **stack_a, char **stack_a_copy);
-void	normalize_stack_a_2(char **stack_a, char **stack_a_copy, int len, int min);
+void	create_stack_a(int argc, char **argv, char **stack_a);
+void	*create_stack_a_copies(char **stack_a, int argc);
+void	normalize_stack_a(char **stack_a, char **stack_a_index, char **stack_a_reduced);
+void	stack_remove_min(char **stack_a_reduced, int min);
 void    create_stack_b(int argc, char **stack_b);
 
 int		errors(int argc, char **argv);
