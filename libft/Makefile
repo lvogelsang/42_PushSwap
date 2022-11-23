@@ -6,7 +6,7 @@
 #    By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 09:21:56 by lvogelsa          #+#    #+#              #
-#    Updated: 2022/10/26 14:33:29 by lvogelsa         ###   ########.fr        #
+#    Updated: 2022/11/24 10:20:41 by lvogelsa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRCS = ft_atoi.c \ft_bzero.c \ft_calloc.c \ft_isalnum.c \ft_isalpha.c \
 	ft_format_default.c \ft_print_c_pct.c \ft_print_d_i.c \
 	ft_print_d_i_2.c \ft_print_p.c \ft_print_s.c \ft_print_u.c \
 	ft_print_u_2.c \ft_print_x.c \ft_print_x_2.c \ft_printf.c \
-	ft_width_adjustment.c
+	ft_width_adjustment.c \get_next_line.c \get_next_line_utils.c
 
 OBJS = $(SRCS:.c=.o)
 
