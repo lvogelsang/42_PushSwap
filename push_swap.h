@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:23:45 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/23 14:54:47 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/23 16:46:51 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@
 # define RRA	3
 # define RRB	3
 # define PB	4
-# define PA 4
+# define PA	4
+
+# define BUCKET_SIZE	50
 
 void    *create_stacks(int argc, char **argv);
 void	create_stack_a(int argc, char **argv, char **stack_a);
@@ -47,6 +49,11 @@ int     stack_sorted_descend(char **stack);
 int		stack_length(char **stack);
 int		stack_max_value(char **stack);
 int		stack_min_value(char **stack);
+
+void	create_bucket(char **stack_a, char **stack_b);
+void	push_bucket_item(char **stack_a, char **stack_b, int len, int min);
+
+void	push_swap_execution(char **stack_a, char **stack_b);
 
 int		operation_b(char **stack_b);
 int		operation_a(char **stack_a);
