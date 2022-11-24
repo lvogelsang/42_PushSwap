@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:58:44 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/23 16:52:49 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/24 13:35:37 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 	create_stacks(argc, argv);
 	return (0);
 }
-// Make disticntion for bucket size.
+// Make distinction for bucket size.
 void	push_swap(char **stack_a, char **stack_b)
 {
 	int	x;
@@ -43,8 +43,13 @@ void	push_swap(char **stack_a, char **stack_b)
 			if (stack_length(stack_a) > BUCKET_SIZE && stack_sorted_descend(stack_b) == 1)
 			{
 				create_bucket(stack_a, stack_b);
+				// Potentially move this to create bucket to continuously improve stack b?
 				while (stack_sorted_descend(stack_b) == 0)
-					push_swap_execution(stack_a, stack_b);
+				{
+					y = operation_b(stack_b);
+					push_swap_b(stack_b, y);
+				}
+				//	push_swap_execution(stack_a, stack_b); // Different execution algorithm?
 			}
 			else
 				push_swap_execution(stack_a, stack_b);

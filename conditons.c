@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:57:58 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/18 15:42:09 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/24 13:34:00 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ int	operation_b(char **stack_b)
 	else if (first > second && first > last && second < last)
 		operation = RRB;
 	else if (first > second && first > last && second > last)
-		operation = PA;
+//		operation = PA;
+		operation = RA;
 	return (operation);
 }
 

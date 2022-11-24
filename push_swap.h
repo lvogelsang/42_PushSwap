@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:23:45 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/23 16:59:59 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/24 13:38:36 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define PB	4
 # define PA	4
 
-# define BUCKET_SIZE	100
+# define BUCKET_SIZE	20
 
 void    *create_stacks(int argc, char **argv);
 void	create_stack_a(int argc, char **argv, char **stack_a);
@@ -51,7 +51,8 @@ int		stack_max_value(char **stack);
 int		stack_min_value(char **stack);
 
 void	create_bucket(char **stack_a, char **stack_b);
-void	push_bucket_item(char **stack_a, char **stack_b, int len, int min);
+void	push_bucket_item(char **stack_a, char **stack_b, int min, int max);
+int	max_bucket_item(char **stack_a, int min, int bucket_size);
 
 void	push_swap_execution(char **stack_a, char **stack_b);
 
