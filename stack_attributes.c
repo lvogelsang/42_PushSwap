@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 15:43:33 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/23 15:38:42 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:54:09 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,18 @@ int	stack_max_value(char **stack)
 		i++;
 	}
 	return (max);
+}
+
+int	stack_max_index(char **stack)
+{
+	int	i;
+	int	max;
+
+	i = 0;
+	max = stack_max_value(stack);
+	while (ft_atoi(stack[i]) != max)
+		i++;
+	return (i);
 }
 
 int	stack_min_value(char **stack)
