@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:57:58 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/24 13:34:00 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/28 10:30:58 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ int	operation_b(char **stack_b)
 		operation = RRB;
 	else if (first > second && first > last && second > last)
 //		operation = PA;
-		operation = RA;
+		operation = RB;
 	return (operation);
 }
 
-int	operation_a(char **stack_a)
+int	operation_a(char **stack_a, int op)
 {
 	int	operation;
 	int	max;
@@ -63,6 +63,11 @@ int	operation_a(char **stack_a)
 	else if (first < second && first < last && second > last)
 		operation = RRA;
 	else if (first < second && first < last && second < last)
-		operation = PB;
+	{
+		if (op == 0)
+			operation = PB;
+		else if (op == 1)
+			operation = RA;
+	}
 	return (operation);
 }
