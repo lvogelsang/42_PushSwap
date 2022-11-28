@@ -6,11 +6,14 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:57:58 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/28 10:30:58 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/28 12:56:21 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	test(char **stack_b);
+void	test_2(char **stack_b);
 
 int	operation_b(char **stack_b)
 {
@@ -24,20 +27,44 @@ int	operation_b(char **stack_b)
 	if (stack_length(stack_b) == 0 || stack_length(stack_b) == 1)
 		return (operation);
 	min = stack_min_value(stack_b);
+	//-----
+	int	med = (min + BUCKET_SIZE) / 2;
+	//-----
 	first = ft_atoi(stack_b[0]);
 	second = ft_atoi(stack_b[1]);
 	last = stack_length(stack_b) - 1;
 	last = ft_atoi(stack_b[last]);
-	if (first == min || (first > second && first < last))
-		operation = RA;
+	/*
+	if (first == min || (first > second && first < last && last < med))
+		operation = RB;
+	else if (first > second && first < last && last >= med)
+		operation = RRB;*/
+	if ((first == min && second == stack_max_value(stack_b)) || (first > second && last == min) ||(first > second && first < last))
+		operation = RB;
 	else if (first < second)
 		operation = SB;
 	else if (first > second && first > last && second < last)
-		operation = RRB;
+//		operation = RRB;
+		test_2(stack_b);
 	else if (first > second && first > last && second > last)
 //		operation = PA;
-		operation = RB;
+//		operation = RB;
+		test(stack_b);
 	return (operation);
+}
+
+void	test_2(char **stack_b)
+{
+	push_swap_b(stack_b, RRB);
+	push_swap_b(stack_b, SB);
+}
+// This is a test:
+void	test(char **stack_b)
+{
+	push_swap_b(stack_b, RRB);
+	push_swap_b(stack_b, SB);
+	push_swap_b(stack_b, RB);
+	push_swap_b(stack_b, SB);
 }
 
 int	operation_a(char **stack_a, int op)

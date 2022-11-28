@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:29:21 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/24 12:30:00 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/28 12:58:45 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,18 @@ void	create_bucket(char **stack_a, char **stack_b)
 	
 	min = stack_min_value(stack_a);
 	bucket_size = 0;
-	max = max_bucket_item(stack_a, min, bucket_size);
+	max = min + BUCKET_SIZE;
+	//---------
+	int	steps = 0;
+	//---------
 	while (bucket_size < BUCKET_SIZE)
 	{
-		push_bucket_item(stack_a, stack_b, min, max);
-//		push_swap_execution(stack_a, stack_b);
+		//-------
+		steps = push_bucket_item(stack_a, stack_b, min, max, steps);
+	//	push_bucket_item(stack_a, stack_b, min, max);
 		bucket_size++;
 	}
+//	printf("Bucketsteps: %d\n", steps);
 /*	i = 0;
 	while (i < stack_length(stack_b))
 	{
@@ -36,7 +41,8 @@ void	create_bucket(char **stack_a, char **stack_b)
 	}*/
 }
 			
-void	push_bucket_item(char **stack_a, char **stack_b, int min, int max)
+// void	push_bucket_item(char **stack_a, char **stack_b, int min, int max)
+int	push_bucket_item(char **stack_a, char **stack_b, int min, int max, int steps)
 {
 	int	i;
 	int	len;
@@ -51,9 +57,16 @@ void	push_bucket_item(char **stack_a, char **stack_b, int min, int max)
 			{
 				push_swap_a(stack_a, RA);
 				i--;
+				//-----
+				steps++;
+				//-----
 			}
 			push_b(stack_a, stack_b);
-			break;
+			//-----
+			steps++;
+			return (steps);
+			//-----
+			//break;
 		}
 		else if (ft_atoi(stack_a[len - i - 1]) >= min \
 			&& ft_atoi(stack_a[len - i - 1]) < max)
@@ -62,14 +75,24 @@ void	push_bucket_item(char **stack_a, char **stack_b, int min, int max)
 			{
 				push_swap_a(stack_a, RRA);
 				i--;
+				//-----
+				steps++;
+				//-----
 			}
 			push_b(stack_a, stack_b);
-			break;
+			//-----
+			steps++;
+			return (steps);
+			//-----
+			//break;
 		}
 		i++;
 	}
+	//------
+	return (steps);
+	//------
 }
-
+/*
 // Don't need this if changing the algorithm for large number sets. 
 int	max_bucket_item(char **stack_a, int min, int bucket_size)
 {
@@ -99,4 +122,4 @@ int	max_bucket_item(char **stack_a, int min, int bucket_size)
 //	printf("%d\n", max);
 	free (stack_a_copy);
 	return (max);
-}
+}*/

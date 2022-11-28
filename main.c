@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:58:44 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/28 10:32:16 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/28 12:58:36 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,12 @@ void	push_swap(char **stack_a, char **stack_b)
 {
 	int	x;
 	int	y;
-
+	
 	while (1)
 	{
+		//----
+		int	steps = 0;
+		//----
 		if (stack_sorted_ascend(stack_a) == 1 && stack_length(stack_b) == 0)
 			break;
 		else if (stack_sorted_ascend(stack_a) == 1 && \
@@ -44,8 +47,12 @@ void	push_swap(char **stack_a, char **stack_b)
 			create_bucket(stack_a, stack_b);
 			while (stack_sorted_descend(stack_b) == 0)
 			{
+			//	y = operation_b(stack_b);
 				y = operation_b(stack_b);
 				push_swap_b(stack_b, y);
+				//----
+				steps++;
+				//----
 			}
 			if (stack_length(stack_a) <= BUCKET_SIZE)
 			{
@@ -53,8 +60,13 @@ void	push_swap(char **stack_a, char **stack_b)
 				{
 					x = operation_a(stack_a, 1);
 					push_swap_a(stack_a, x);
+					//----
+					steps++;
+					//----
 				}
 			}
+			//----
+//			printf("Sortingsteps: %d\n", steps);
 			//combine commands?
 		}
 		else
