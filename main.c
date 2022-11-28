@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:58:44 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/28 12:58:36 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/28 14:36:15 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	push_swap(char **stack_a, char **stack_b)
 		// stack_b == descend ?
 		else if (stack_length(stack_a) > BUCKET_SIZE)
 		{
+//			printf("%s\n", "test");
 			create_bucket(stack_a, stack_b);
 			while (stack_sorted_descend(stack_b) == 0)
 			{

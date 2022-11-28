@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:57:58 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/28 12:56:21 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/28 13:23:07 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	test(char **stack_b)
 	push_swap_b(stack_b, RB);
 	push_swap_b(stack_b, SB);
 }
+// modify this as well??????? one for bucket sorting / one for the normal one?
 
 int	operation_a(char **stack_a, int op)
 {
