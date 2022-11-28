@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:11:28 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/28 16:31:17 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/28 17:04:29 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	push_a(char **stack_b, char **stack_a)
 		stack_b[i] = stack_b[i + 1];
 		i++;
 	}
-	ft_printf("%s\n", "pa");
+//	ft_printf("%s\n", "pa");
 }
 
 void	push_b(char **stack_a, char **stack_b)
@@ -98,7 +98,7 @@ void	push_b(char **stack_a, char **stack_b)
 		stack_a[i] = stack_a[i + 1];
 		i++;
 	}
-	ft_printf("%s\n", "pb");
+//	ft_printf("%s\n", "pb");
 }
 
 // Potentially refine the following function?

@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:58:44 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/28 16:30:26 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/28 17:03:13 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	push_swap(char **stack_a, char **stack_b)
 					steps++;
 					//----
 				}
-//				printf("Sorting A: %d\n", steps);
+				printf("Sorting A: %d\n", steps);
 			}
 		}
 		else if (stack_length(stack_a) > BUCKET_SIZE || stack_length(stack_b) >= BUCKET_SIZE)

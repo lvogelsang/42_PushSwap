@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:29:21 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/28 16:30:37 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/28 17:05:59 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	create_bucket(char **stack_a, char **stack_b)
 	bucket_size = 0;
 	max = min + BUCKET_SIZE;
 	//---------
-	int	steps = 0;
+	static	int	steps;
 	//---------
 //	printf("%s\n", "test1");
 	while (bucket_size < BUCKET_SIZE)
@@ -34,7 +34,7 @@ void	create_bucket(char **stack_a, char **stack_b)
 	//	push_bucket_item(stack_a, stack_b, min, max);
 		bucket_size++;
 	}
-//	printf("Bucketsteps: %d\n", steps);
+	printf("Bucketsteps: %d\n", steps);
 /*	i = 0;
 	while (i < stack_length(stack_b))
 	{

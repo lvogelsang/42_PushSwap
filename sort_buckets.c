@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:55:23 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/28 16:57:39 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/28 17:06:41 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@ void	sort_buckets(char **stack_a, char **stack_b, int bucket_count)
 	int	i;
 	int	j;
 	int	x;
-	int	steps;
+	static int	steps;
 	int	max_index;
 	int	med;
-	steps = 0;
 		j = 0;
 		x = 0;
 		while (j < BUCKET_SIZE)
@@ -51,5 +50,5 @@ void	sort_buckets(char **stack_a, char **stack_b, int bucket_count)
 			steps++;;
 			j++;
 		}
-//	printf("Sorting Bucket: %d\n", steps);
+	printf("Sorting Bucket: %d\n", steps);
 }
