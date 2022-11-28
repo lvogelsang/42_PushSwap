@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:57:58 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/28 13:23:07 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/28 15:42:44 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,6 @@ int	operation_b(char **stack_b)
 	if (stack_length(stack_b) == 0 || stack_length(stack_b) == 1)
 		return (operation);
 	min = stack_min_value(stack_b);
-	//-----
-	int	med = (min + BUCKET_SIZE) / 2;
-	//-----
 	first = ft_atoi(stack_b[0]);
 	second = ft_atoi(stack_b[1]);
 	last = stack_length(stack_b) - 1;
