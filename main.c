@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:58:44 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/29 13:44:56 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/29 17:08:28 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	push_swap(char **stack_a, char **stack_b)
 	int	x;
 	int	y;
 	
+	int	len = stack_length(stack_a);
 	while (1)
 	{
 		bucket_size = get_bucket_size(stack_a);
@@ -40,14 +41,14 @@ void	push_swap(char **stack_a, char **stack_b)
 		else if (stack_sorted_ascend(stack_a) == 1 && \
 			stack_sorted_descend(stack_b) == 1)
 				push_a(stack_b, stack_a);
-		else if (stack_length(stack_a) > bucket_size && stack_sorted_ascend(stack_a) == 0)
-			buckets(stack_a, stack_b, bucket_size);
-		else if (stack_length(stack_a) + stack_length(stack_b) <= bucket_size)
-				sort_short(stack_a, stack_b);
-		if (stack_length(stack_b) >= bucket_size)
+		//incorporate a bucket count?
+		else if (stack_length(stack_a) > bucket_size)
 		{
+			buckets(stack_a, stack_b, bucket_size);
 			sort_buckets(stack_a, stack_b, bucket_size);
 			break ;
 		}
+		else
+			sort_short(stack_a, stack_b);
 	}
 }
