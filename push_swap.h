@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:23:45 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/28 17:10:01 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/29 12:34:33 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@
 # define PB	4
 # define PA	4
 
-# define BUCKET_SIZE	45
-
 void    *create_stacks(int argc, char **argv);
 void	create_stack_a(int argc, char **argv, char **stack_a);
 void	*create_stack_a_copies(char **stack_a, int argc);
@@ -48,15 +46,17 @@ int     stack_sorted_ascend(char **stack);
 int     stack_sorted_descend(char **stack);
 int		stack_length(char **stack);
 int		stack_max_value(char **stack);
+int		stack_max_index(char **stack);
 int		stack_min_value(char **stack);
 
-void	create_bucket(char **stack_a, char **stack_b);
-int	push_bucket_item(char **stack_a, char **stack_b, int min, int max, int steps);
-//void	push_bucket_item(char **stack_a, char **stack_b, int min, int max);
-int	max_bucket_item(char **stack_a, int min, int bucket_size);
+int		get_bucket_size(char **stack_a);
+void	buckets(char **stack_a, char **stack_b, int bucket_size);
+void	create_bucket(char **stack_a, char **stack_b, int bucket_size);
+void	push_bucket_item(char **stack_a, char **stack_b, int min, int max);
+int		max_bucket_item(char **stack_a, int min, int bucket_size);
+void	sort_buckets(char **stack_a, char **stack_b, int bucket_size);
 
-void	push_swap_execution(char **stack_a, char **stack_b);
-
+void	sort_short(char **stack_a, char **stack_b);
 int		operation_b(char **stack_b);
 int		operation_a(char **stack_a, int op);
 
