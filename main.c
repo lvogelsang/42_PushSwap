@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:58:44 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/29 17:08:28 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/30 10:00:49 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ void	push_swap(char **stack_a, char **stack_b)
 			break ;
 		}
 		else
+		{
+//			printf("HELP");
 			sort_short(stack_a, stack_b);
+		}
 	}
 }
