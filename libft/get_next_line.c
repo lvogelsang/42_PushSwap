@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 14:42:57 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/18 09:49:28 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/30 16:49:26 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
 // that is returned from our reading buffer, so that only characters after the 
 // new line character remain. We store it in our static array, which is then 
 // ready for the next function call.
-
+#include <stdio.h>
+#include "ft_printf.h"
 char	*get_next_line(int fd)
 {
 	char		*next_line;
@@ -30,11 +31,15 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || fd >= MAX_FD || BUFFER_SIZE < 0)
 		return (NULL);
+	ft_printf("1");
 	buf[fd] = gnl_read_save_line(fd, buf);
 	if (buf[fd] == NULL)
 		return (NULL);
+	ft_printf("2");
 	next_line = gnl_format_line(fd, buf);
+	ft_printf("3");
 	buf[fd] = gnl_next_next_line(fd, buf);
+	ft_printf("%s\n", next_line);
 	return (next_line);
 }
 
@@ -49,7 +54,9 @@ char	*gnl_read_save_line(int fd, char **buf)
 	nbytes = 1;
 	while ((!(gnl_strchr(buf[fd], '\n'))) && nbytes)
 	{
+		ft_printf(":(");
 		nbytes = read(fd, temp, BUFFER_SIZE);
+		ft_printf("\n%d\n", nbytes);
 		if (nbytes == -1)
 		{
 			free (temp);

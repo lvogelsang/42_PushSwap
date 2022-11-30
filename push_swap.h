@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:23:45 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/30 11:12:53 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/30 16:26:02 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PUSH_SWAP_H
 
 # include "./libft/libft.h"
-# include "./libft/ft_printf.h"
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -28,6 +27,9 @@
 # define PB	4
 # define PA	4
 
+# define INSTRUCTIONS	["sa", "sb", "ss", "pa", "pb", "ra", "rb", "rr", "rra", "rrb", "rrr"]
+
+int	push_swap_execution(int argc, char **argv);
 void    *create_stacks(int argc, char **argv);
 void	create_stack_a(int argc, char **argv, char **stack_a);
 void	*create_stack_a_copies(char **stack_a, int argc);

@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:57:58 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/29 13:44:53 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/30 15:54:15 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ void	sort_short(char **stack_a, char **stack_b)
 	x = operation_a(stack_a, 0);
 	y = operation_b(stack_b);
 	if (x == 4)
+	{
 		push_b(stack_a, stack_b);
+		ft_printf("pb\n");
+	}
 	else if (x == y)
 		push_swap_a_b(stack_a, stack_b, x);
 	else
@@ -83,6 +86,6 @@ int	operation_a(char **stack_a, int op)
 	else if (first < second && first < last && second > last)
 		operation = RRA;
 	else if (first < second && first < last && second < last && op == 0)
-			operation = PB;
+		operation = PB;
 	return (operation);
 }

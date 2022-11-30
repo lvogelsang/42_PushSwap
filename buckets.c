@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:29:21 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/30 12:42:15 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/30 16:15:28 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	push_bucket_item(char **stack_a, char **stack_b, int min, int max)
 				i--;
 			}
 			push_b(stack_a, stack_b);
+			ft_printf("pb\n");
 			break ;
 		}
 		else if (ft_atoi(stack_a[len - i - 1]) >= min && ft_atoi(stack_a[len - i - 1]) < max)
@@ -98,6 +99,7 @@ void	push_bucket_item(char **stack_a, char **stack_b, int min, int max)
 				i--;
 			}
 			push_b(stack_a, stack_b);
+			ft_printf("pb\n");
 			break ;
 		}
 		i++;
@@ -131,6 +133,7 @@ void	sort_buckets(char **stack_a, char **stack_b, int bucket_size)
 				push_swap_b(stack_b, RRB);
 		}
 		push_a(stack_b, stack_a);
+		ft_printf("pa\n");
 		if (stack_a[0] > stack_a[1])
 		{
 //			printf("push! %d\n", j);

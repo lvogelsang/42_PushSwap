@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:11:28 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/29 13:39:09 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/30 15:55:00 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	reverse_rotate(char **stack)
 	}
 	stack[0] = temp;
 }	
-
+//combine push b and a.
 void	push_a(char **stack_b, char **stack_a)
 {
 	int		len;
@@ -75,7 +75,7 @@ void	push_a(char **stack_b, char **stack_a)
 		stack_b[i] = stack_b[i + 1];
 		i++;
 	}
-	ft_printf("%s\n", "pa");
+//	ft_printf("%s\n", "pa");
 }
 
 void	push_b(char **stack_a, char **stack_b)
@@ -98,7 +98,7 @@ void	push_b(char **stack_a, char **stack_b)
 		stack_a[i] = stack_a[i + 1];
 		i++;
 	}
-	ft_printf("%s\n", "pb");
+//	ft_printf("%s\n", "pb");
 }
 
 /*
