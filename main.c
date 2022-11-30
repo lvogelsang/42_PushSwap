@@ -6,13 +6,19 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:58:44 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/30 12:09:58 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/30 13:26:33 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 int	main(int argc, char **argv)
+{
+	push_swap_execution(argc, argv);
+	return (0);
+}
+
+int	push_swap_execution(int argc, char **argv)
 {
 	if (argc == 1)
 		return (0);
@@ -22,7 +28,7 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	create_stacks(argc, argv);
-	return (0);
+	return (1);
 }
 
 void	push_swap(char **stack_a, char **stack_b)

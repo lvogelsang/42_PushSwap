@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:13:18 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/30 12:43:23 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/30 13:20:29 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ void	*create_stacks(int argc, char **argv)
 		return (0);
 	create_stack_b(argc, stack_b);
 	push_swap(stack_a, stack_b);
-	int	z = stack_sorted_ascend(stack_a);
+/*	int	z = stack_sorted_ascend(stack_a);
 	int	xx = stack_length(stack_a);
 	int	zz = stack_length(stack_b);
 	printf("Sorted: %d\nLen A: %d\n, Len B:, %d\n", z, xx, zz);
-	/*	int	z = 0;
+		int	z = 0;
 	while (z < stack_length(stack_a))
 	{
 		printf("%s ", stack_a[z]);
