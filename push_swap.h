@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:23:45 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/29 12:34:33 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/30 11:12:53 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	create_bucket(char **stack_a, char **stack_b, int bucket_size);
 void	push_bucket_item(char **stack_a, char **stack_b, int min, int max);
 int		max_bucket_item(char **stack_a, int min, int bucket_size);
 void	sort_buckets(char **stack_a, char **stack_b, int bucket_size);
+int	bucket_max_values(char **stack_b, int med);
+int	compare_index(int i, int j, int med);
 
 void	sort_short(char **stack_a, char **stack_b);
 int		operation_b(char **stack_b);

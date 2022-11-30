@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:58:44 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/30 10:00:49 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/11/30 12:09:58 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,19 @@ void	push_swap(char **stack_a, char **stack_b)
 		else if (stack_sorted_ascend(stack_a) == 1 && \
 			stack_sorted_descend(stack_b) == 1)
 				push_a(stack_b, stack_a);
-		//incorporate a bucket count?
 		else if (stack_length(stack_a) > bucket_size)
-		{
+		{	
 			buckets(stack_a, stack_b, bucket_size);
 			sort_buckets(stack_a, stack_b, bucket_size);
 			break ;
 		}
 		else
-		{
-//			printf("HELP");
 			sort_short(stack_a, stack_b);
-		}
 	}
 }
+/*	int	z = 0;
+	while (z < stack_length(stack_a))
+	{
+		printf("%s ", stack_a[z]);
+		z++;
+	}*/
