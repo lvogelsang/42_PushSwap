@@ -6,29 +6,29 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:19:55 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/29 11:44:56 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/12/01 16:20:48 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	errors(int argc, char **argv)
+int	errors(int argc, char **argv, int i)
 {
-	if (error_non_integer(argc, argv) == 1)
+	if (error_non_integer(argc, argv, i) == 1)
 		return (1);
-	if (error_min_max_integer(argc, argv) == 1)
+	if (error_min_max_integer(argc, argv, i) == 1)
 		return (1);
-	if (error_duplicate(argc, argv) == 1)
+	if (error_duplicate(argc, argv, i) == 1)
 		return (1);
 	return (0);
 }
 
-int	error_non_integer(int argc, char **argv)
+int	error_non_integer(int argc, char **argv, int i)
 {
-	int	i;
+//	int	i;
 	int	j;
 
-	i = 1;
+//	i = 1;
 	while (i < argc)
 	{
 		j = 0;
@@ -45,12 +45,12 @@ int	error_non_integer(int argc, char **argv)
 	return (0);
 }
 
-int	error_min_max_integer(int argc, char **argv)
+int	error_min_max_integer(int argc, char **argv, int i)
 {
-	int	i;
+//	int	i;
 	int	num;
 
-	i = 1;
+//	i = 1;
 	while (i < argc)
 	{
 		num = ft_atoi(argv[i]);
@@ -61,12 +61,12 @@ int	error_min_max_integer(int argc, char **argv)
 	return (0);
 }
 
-int	error_duplicate(int argc, char **argv)
+int	error_duplicate(int argc, char **argv, int i)
 {
-	int	i;
+//	int	i;
 	int	j;
 	
-	i = 1;
+//	i = 1;
 	while (i < argc - 1)
 	{
 		j = i + 1;

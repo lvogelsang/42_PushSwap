@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:23:45 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/11/30 16:26:02 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/12/01 16:19:51 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ void	normalize_stack_a(char **stack_a, char **stack_a_index, char **stack_a_redu
 void	stack_remove_min(char **stack_a_reduced, int min);
 void    create_stack_b(int argc, char **stack_b);
 
-int		errors(int argc, char **argv);
-int		error_non_integer(int argc, char **argv);
-int		error_min_max_integer(int argc, char **argv);
-int		error_duplicate(int argc, char **argv);
+int		errors(int argc, char **argv, int i);
+int		error_non_integer(int argc, char **argv, int i);
+int		error_min_max_integer(int argc, char **argv, int i);
+int		error_duplicate(int argc, char **argv, int i);
 
 void	push_swap(char **stack_a, char **stack_b);
 
