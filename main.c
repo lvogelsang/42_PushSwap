@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:58:44 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/12/01 16:20:15 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/12/01 16:34:10 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(int argc, char **argv)
 	return (0);
 }*/
 
+// combine those with the checker functions.
 void	*split_input(char **argv);
 int	push_swap_execution(int argc, char **argv)
 {
