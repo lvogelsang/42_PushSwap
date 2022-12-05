@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:23:45 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/12/05 14:46:42 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/12/06 09:51:02 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,9 @@ void	sort_buckets(char **stack_a, char **stack_b, int bucket_size);
 void	sort_buckets_exec(char **stack_a, char **stack_b, int med, \
 int max_index);
 int		bucket_max_values(char **stack_b, int med);
-int		compare_index(int i, int j, int med);
+int		compare_index(int i, int j, int k, int med);
+int		standardize_index(int index, int med);
+void	sort_stack_a_top(char **stack_a);
 
 // SORT_SHORT.C
 

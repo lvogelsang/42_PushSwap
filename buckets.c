@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:29:21 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/12/05 20:37:06 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/12/06 09:53:02 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,10 +116,9 @@ void	sort_buckets(char **stack_a, char **stack_b, int bucket_size)
 		med = stack_length(stack_b) / 2;
 		max_index = bucket_max_values(stack_b, med);
 		sort_buckets_exec(stack_a, stack_b, med, max_index);
-	// Write the following function which sorts the top three items on stack_a.
-		sort_stack_a_top(stack_a, stack_b);
-	//	if (ft_atoi(stack_a[0]) > ft_atoi(stack_a[1]))
-	//		push_swap_a(stack_a, SA);
+//		if (ft_atoi(stack_a[0]) > ft_atoi(stack_a[1]))
+//			push_swap_a(stack_a, SA);
+		sort_stack_a_top(stack_a);
 		i++;
 	}
 }
@@ -129,15 +128,19 @@ int max_index)
 {
 	if (max_index <= med)
 	{
-		while (ft_atoi(stack_b[0]) != stack_max_value(stack_b) \
-			&& ft_atoi(stack_b[0]) != stack_max_value(stack_b) - 1)
+		while (max_index > 0)
+		{
 			push_swap_b(stack_b, RB);
+			max_index--;
+		}
 	}
 	else
 	{
-		while (ft_atoi(stack_b[0]) != stack_max_value(stack_b) \
-			&& ft_atoi(stack_b[0]) != stack_max_value(stack_b) - 1)
+		while (max_index < stack_length(stack_b))
+		{
 			push_swap_b(stack_b, RRB);
+			max_index++;
+		}
 	}
 	push_a(stack_b, stack_a);
 	ft_printf("pa\n");
@@ -160,7 +163,7 @@ int	bucket_max_values(char **stack_b, int med)
 	if (j == stack_length(stack_b))
 		j = -1;
 	k = 0;
-	while (k < stack_length(stack_b) && ft_atoi(stack_b[j]) != max - 2)
+	while (k < stack_length(stack_b) && ft_atoi(stack_b[k]) != max - 2)
 		k++;
 	if (k == stack_length(stack_b))
 		k = -1;
@@ -171,13 +174,14 @@ int	compare_index(int i, int j, int k, int med)
 {
 	int	x;
 	int	y;
+	int	z;
 
 	x = standardize_index(i, med);
 	y = standardize_index(j, med);
-	z = standardize_index(k, med);;
+	z = standardize_index(k, med); 
 	if ((x <= y || y == -1) && (x <= z || z == -1))
 		return (i);
-	else if (y <= z && y != -1)
+	else if (y <= x && (y <= z || z == -1) && y != -1)
 		return (j);
 	else
 		return (k);
@@ -185,8 +189,21 @@ int	compare_index(int i, int j, int k, int med)
 
 int	standardize_index(int index, int med)
 {
-	if (index <= med);
+	if (index <= med)
 		return (index);
 	else
-		return (index - (2 * med));
+		return ((med * 2) - index);
+}
+
+void	sort_stack_a_top(char **stack_a)
+{
+	while (stack_sorted_ascend(stack_a) == 0)
+	{
+		if (ft_atoi(stack_a[0]) > ft_atoi(stack_a[1]))
+			push_swap_a(stack_a, SA);
+		else if (ft_atoi(stack_a[1]) > ft_atoi(stack_a[2]))
+			push_swap_a(stack_a, RA);
+		else
+			push_swap_a(stack_a, RRA);
+	}
 }
