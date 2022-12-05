@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:29:21 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/12/05 14:09:57 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/12/05 20:05:38 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	get_bucket_size(char **stack_a)
 	else if (len > 500)
 		bucket_size = len / 10;
 	return (bucket_size);
+
 }
 
 void	buckets(char **stack_a, char **stack_b, int bucket_size)
@@ -115,7 +116,7 @@ void	sort_buckets(char **stack_a, char **stack_b, int bucket_size)
 		med = stack_length(stack_b) / 2;
 		max_index = bucket_max_values(stack_b, med);
 		sort_buckets_exec(stack_a, stack_b, med, max_index);
-		if (stack_a[0] > stack_a[1])
+		if (ft_atoi(stack_a[0]) > ft_atoi(stack_a[1]))
 			push_swap_a(stack_a, SA);
 		i++;
 	}
