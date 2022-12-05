@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:29:21 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/12/05 20:05:38 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/12/05 20:37:06 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,10 @@ void	sort_buckets(char **stack_a, char **stack_b, int bucket_size)
 		med = stack_length(stack_b) / 2;
 		max_index = bucket_max_values(stack_b, med);
 		sort_buckets_exec(stack_a, stack_b, med, max_index);
-		if (ft_atoi(stack_a[0]) > ft_atoi(stack_a[1]))
-			push_swap_a(stack_a, SA);
+	// Write the following function which sorts the top three items on stack_a.
+		sort_stack_a_top(stack_a, stack_b);
+	//	if (ft_atoi(stack_a[0]) > ft_atoi(stack_a[1]))
+	//		push_swap_a(stack_a, SA);
 		i++;
 	}
 }
@@ -145,6 +147,7 @@ int	bucket_max_values(char **stack_b, int med)
 {
 	int	i;
 	int	j;
+	int	k;
 	int	max;
 
 	max = stack_max_value(stack_b);
@@ -155,27 +158,35 @@ int	bucket_max_values(char **stack_b, int med)
 	while (j < stack_length(stack_b) && ft_atoi(stack_b[j]) != max - 1)
 		j++;
 	if (j == stack_length(stack_b))
-		return (i);
-	return (compare_index(i, j, med));
+		j = -1;
+	k = 0;
+	while (k < stack_length(stack_b) && ft_atoi(stack_b[j]) != max - 2)
+		k++;
+	if (k == stack_length(stack_b))
+		k = -1;
+	return (compare_index(i, j, k, med));
 }
 
-int	compare_index(int i, int j, int med)
+int	compare_index(int i, int j, int k, int med)
 {
 	int	x;
 	int	y;
 
-	x = i;
-	y = j;
-	if (x <= med)
-		x = x + med;
-	else
-		x = x - med;
-	if (y <= med)
-		y = y + med;
-	else
-		y = y - med;
-	if (x - med <= y - med)
+	x = standardize_index(i, med);
+	y = standardize_index(j, med);
+	z = standardize_index(k, med);;
+	if ((x <= y || y == -1) && (x <= z || z == -1))
 		return (i);
-	else
+	else if (y <= z && y != -1)
 		return (j);
+	else
+		return (k);
+}
+
+int	standardize_index(int index, int med)
+{
+	if (index <= med);
+		return (index);
+	else
+		return (index - (2 * med));
 }
