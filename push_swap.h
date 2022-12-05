@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:23:45 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/12/01 16:19:51 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/12/05 14:46:42 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "./libft/libft.h"
 
-# include <stdio.h>
 # include <stdlib.h>
 
 # define SA	1
@@ -27,46 +26,61 @@
 # define PB	4
 # define PA	4
 
-# define INSTRUCTIONS	["sa", "sb", "ss", "pa", "pb", "ra", "rb", "rr", "rra", "rrb", "rrr"]
+// STACK.C
 
-int	push_swap_execution(int argc, char **argv);
-void    *create_stacks(int argc, char **argv);
-void	create_stack_a(int argc, char **argv, char **stack_a);
-void	*create_stack_a_copies(char **stack_a, int argc);
-void	normalize_stack_a(char **stack_a, char **stack_a_index, char **stack_a_reduced);
+char	**create_stack_a(int argc, char **argv);
+void	*normalize_stack_a(char **stack_a, int len);
+void	normalize_stack_a_two(char **stack_a, char **stack_a_index, \
+char **stack_a_reduced, int len);
 void	stack_remove_min(char **stack_a_reduced, int min);
-void    create_stack_b(int argc, char **stack_b);
+char	**create_stack_b(int len);
 
-int		errors(int argc, char **argv, int i);
-int		error_non_integer(int argc, char **argv, int i);
-int		error_min_max_integer(int argc, char **argv, int i);
-int		error_duplicate(int argc, char **argv, int i);
+// ERROR.C
+
+int		errors(char **stack_a, int len);
+int		error_non_integer(char **stack_a, int len);
+int		error_min_max_integer(char **stack_a, int len);
+int		error_duplicate(char **stack_a, int len);
+
+// PUSH_SWAP.C
 
 void	push_swap(char **stack_a, char **stack_b);
 
-int     stack_sorted_ascend(char **stack);
-int     stack_sorted_descend(char **stack);
+// STACK_ATTRIBUTES.C
+
+int		stack_sorted_ascend(char **stack);
+int		stack_sorted_descend(char **stack);
 int		stack_length(char **stack);
 int		stack_max_value(char **stack);
 int		stack_max_index(char **stack);
 int		stack_min_value(char **stack);
 
+// BUCKETS.C
+
 int		get_bucket_size(char **stack_a);
 void	buckets(char **stack_a, char **stack_b, int bucket_size);
 void	create_bucket(char **stack_a, char **stack_b, int bucket_size);
 void	push_bucket_item(char **stack_a, char **stack_b, int min, int max);
-int		max_bucket_item(char **stack_a, int min, int bucket_size);
+void	push_bucket_item_exec(char **stack_a, char **stack_b, int i, int op);
 void	sort_buckets(char **stack_a, char **stack_b, int bucket_size);
-int	bucket_max_values(char **stack_b, int med);
-int	compare_index(int i, int j, int med);
+void	sort_buckets_exec(char **stack_a, char **stack_b, int med, \
+int max_index);
+int		bucket_max_values(char **stack_b, int med);
+int		compare_index(int i, int j, int med);
+
+// SORT_SHORT.C
 
 void	sort_short(char **stack_a, char **stack_b);
 int		operation_b(char **stack_b);
 int		operation_a(char **stack_a, int op);
 
+// PUSH_SWAP_EXECUTION.C
+
 void	push_swap_a_b(char **stack_a, char **stack_b, int operation);
 void	push_swap_b(char **stack_b, int operation);
 void	push_swap_a(char **stack_a, int operation);
+
+// OPERATIONS.C
 
 void	swap(char **stack);
 void	rotate(char **stack);

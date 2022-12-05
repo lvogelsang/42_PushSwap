@@ -6,53 +6,20 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:13:18 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/12/01 15:43:59 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/12/05 13:10:47 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	*create_stacks(int argc, char **argv)
+char	**create_stack_a(int argc, char **argv)
 {
 	char	**stack_a;
-	char	**stack_b;
+	int		i;
 
 	stack_a = (char **)malloc(argc * sizeof(char *));
 	if (stack_a == NULL)
 		return (0);
-	create_stack_a(argc, argv, stack_a);
-	stack_b = (char **)malloc(argc * sizeof(char *));
-	if (stack_b == NULL)
-		return (0);
-	create_stack_b(argc, stack_b);
-	//------
-/*	int	z = 0;
-	while (z < stack_length(stack_a))
-	{
-//		printf("%s ", stack_a[z]);
-		z++;
-	}*/
-	push_swap(stack_a, stack_b);
-/*	int	z = stack_sorted_ascend(stack_a);
-	int	xx = stack_length(stack_a);
-	int	zz = stack_length(stack_b);
-	printf("Sorted: %d\nLen A: %d\n, Len B:, %d\n", z, xx, zz);
-		int	z = 0;
-	while (z < stack_length(stack_a))
-	{
-		printf("%s ", stack_a[z]);
-		z++;
-	}*/
-	free (stack_a);
-	free (stack_b);
-	return (0);
-}
-
-void	create_stack_a(int argc, char **argv, char **stack_a)
-{
-	char	**stack_a_copy;
-	int	i;
-	
 	i = 0;
 	while (i < argc - 1)
 	{
@@ -60,29 +27,23 @@ void	create_stack_a(int argc, char **argv, char **stack_a)
 		i++;
 	}
 	stack_a[i] = NULL;
-/*		int	z = 0;
-	while (z < stack_length(stack_a))
-	{
-		printf("%s ", stack_a[z]);
-		z++;
-	}*/
-	create_stack_a_copies(stack_a, argc);	
+	return (stack_a);
 }
 
-void	*create_stack_a_copies(char **stack_a, int argc)
+void	*normalize_stack_a(char **stack_a, int len)
 {
 	char	**stack_a_index;
 	char	**stack_a_reduced;
-	int	i;
+	int		i;
 
-	stack_a_index = (char **)malloc(argc * sizeof(char *));
+	stack_a_index = (char **)malloc((len + 1) * sizeof(char *));
 	if (stack_a_index == NULL)
 		return (0);
-	stack_a_reduced = (char **)malloc(argc * sizeof(char *));
+	stack_a_reduced = (char **)malloc((len + 1) * sizeof(char *));
 	if (stack_a_reduced == NULL)
 		return (0);
 	i = 0;
-	while (i < argc - 1)
+	while (i < len)
 	{
 		stack_a_index[i] = stack_a[i];
 		stack_a_reduced[i] = stack_a[i];
@@ -90,20 +51,19 @@ void	*create_stack_a_copies(char **stack_a, int argc)
 	}
 	stack_a_index[i] = NULL;
 	stack_a_reduced[i] = NULL;
-	normalize_stack_a(stack_a, stack_a_index, stack_a_reduced);
+	normalize_stack_a_two(stack_a, stack_a_index, stack_a_reduced, len);
 	free (stack_a_index);
 	free (stack_a_reduced);
 	return (0);
 }
 
-void	normalize_stack_a(char **stack_a, char **stack_a_index, char **stack_a_reduced)
+void	normalize_stack_a_two(char **stack_a, char **stack_a_index, \
+char **stack_a_reduced, int len)
 {
-	int		i;
+	int	i;
 	int	j;
-	int		len;
-	int		min;
+	int	min;
 
-	len = stack_length(stack_a);
 	i = 0;
 	while (i < len)
 	{
@@ -115,7 +75,7 @@ void	normalize_stack_a(char **stack_a, char **stack_a_index, char **stack_a_redu
 			{
 				stack_a[j] = ft_itoa(i);
 				stack_remove_min(stack_a_reduced, min);
-				break;
+				break ;
 			}
 			j++;
 		}
@@ -140,15 +100,20 @@ void	stack_remove_min(char **stack_a_reduced, int min)
 	stack_a_reduced[i] = "x";
 }
 
-void	create_stack_b(int argc, char **stack_b)
+char	**create_stack_b(int len)
 {
-	int i;
-	
+	char	**stack_b;
+	int		i;
+
+	stack_b = (char **)malloc((len + 1) * sizeof(char *));
+	if (stack_b == NULL)
+		return (0);
 	i = 0;
-	while (i < argc - 1)
+	while (i < len)
 	{
 		stack_b[i] = "x";
 		i++;
 	}
 	stack_b[i] = NULL;
+	return (stack_b);
 }

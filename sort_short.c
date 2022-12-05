@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conditons.c                                        :+:      :+:    :+:   */
+/*   sort_short.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 10:57:58 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/12/01 15:09:48 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/12/05 14:14:50 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ int	operation_b(char **stack_b)
 	last = stack_length(stack_b) - 1;
 	last = ft_atoi(stack_b[last]);
 	if ((first == min && second == stack_max_value(stack_b)) \
-			|| (first > second && last == min && stack_length(stack_b) > 2) || (first > second && first < last))
+		|| (first > second && last == min && stack_length(stack_b) > 2) \
+		|| (first > second && first < last))
 		operation = RB;
 	else if (first < second)
 		operation = SB;
@@ -77,9 +78,8 @@ int	operation_a(char **stack_a, int op)
 	second = ft_atoi(stack_a[1]);
 	last = stack_length(stack_a) - 1;
 	last = ft_atoi(stack_a[last]);
-	if (first == max \
-			|| (first < second && first > last) \
-			|| (first < second && first < last && second < last && op == 1))
+	if (first == max || (first < second && first > last) \
+		|| (first < second && first < last && second < last && op == 1))
 		operation = RA;
 	else if (first > second)
 		operation = SA;

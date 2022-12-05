@@ -5,69 +5,63 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/17 13:05:28 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/12/01 16:16:33 by lvogelsa         ###   ########.fr       */
+/*   Created: 2022/12/05 12:18:45 by lvogelsa          #+#    #+#             */
+/*   Updated: 2022/12/05 14:45:48 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_swap_a_b(char **stack_a, char **stack_b, int operation)
+int	main(int argc, char **argv)
 {
-	if (operation == 1)
+	char	**stack_a;
+	char	**stack_b;
+	int		len;
+
+	if (argc == 2)
+		stack_a = ft_split(argv[1], ' ');
+	if (argc > 2)
+		stack_a = create_stack_a(argc, argv);
+	if (argc == 1 || stack_a == NULL)
+		return (0);
+	len = stack_length(stack_a);
+	if (errors(stack_a, len) == 1)
 	{
-		swap(stack_a);
-		swap(stack_b);
-		ft_printf("%s\n", "ss");
+		ft_printf("Error\n");
+		return (0);
 	}
-	else if (operation == 2)
-	{
-		rotate(stack_a);
-		rotate(stack_b);
-		ft_printf("%s\n", "rr");
-	}
-	else if (operation == 3)
-	{
-		reverse_rotate(stack_a);
-		reverse_rotate(stack_b);
-		ft_printf("%s\n", "rrr");
-	}
+	normalize_stack_a(stack_a, len);
+	stack_b = create_stack_b(len);
+	if (stack_b == NULL)
+		return (0);
+	push_swap(stack_a, stack_b);
+	free (stack_a);
+	free (stack_b);
+	return (0);
 }
 
-void	push_swap_b(char **stack_b, int operation)
+void	push_swap(char **stack_a, char **stack_b)
 {
-	if (operation == 1)
-	{
-		swap(stack_b);
-		ft_printf("%s\n", "sb");
-	}
-	else if (operation == 2)
-	{
-		rotate(stack_b);
-		ft_printf("%s\n", "rb");
-	}
-	else if (operation == 3)
-	{
-		reverse_rotate(stack_b);
-		ft_printf("%s\n", "rrb");
-	}
-}
+	int	bucket_size;
 
-void	push_swap_a(char **stack_a, int operation)
-{
-	if (operation == 1)
+	while (1)
 	{
-		swap(stack_a);
-		ft_printf("%s\n", "sa");
-	}
-	else if (operation == 2)
-	{
-		rotate(stack_a);
-		ft_printf("%s\n", "ra");
-	}
-	else if (operation == 3)
-	{
-		reverse_rotate(stack_a);
-		ft_printf("%s\n", "rra");
+		bucket_size = get_bucket_size(stack_a);
+		if (stack_sorted_ascend(stack_a) == 1 && stack_length(stack_b) == 0)
+			break ;
+		else if (stack_sorted_ascend(stack_a) == 1 && \
+			stack_sorted_descend(stack_b) == 1)
+		{
+			push_a(stack_b, stack_a);
+			ft_printf("pa\n");
+		}
+		else if (stack_length(stack_a) > bucket_size)
+		{
+			buckets(stack_a, stack_b, bucket_size);
+			sort_buckets(stack_a, stack_b, bucket_size);
+			break ;
+		}
+		else
+			sort_short(stack_a, stack_b);
 	}
 }
