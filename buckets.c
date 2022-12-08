@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:29:21 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/12/06 09:53:02 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/12/08 11:19:47 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	get_bucket_size(char **stack_a)
 	else if (len > 500)
 		bucket_size = len / 10;
 	return (bucket_size);
-
 }
 
 void	buckets(char **stack_a, char **stack_b, int bucket_size)
@@ -116,8 +115,6 @@ void	sort_buckets(char **stack_a, char **stack_b, int bucket_size)
 		med = stack_length(stack_b) / 2;
 		max_index = bucket_max_values(stack_b, med);
 		sort_buckets_exec(stack_a, stack_b, med, max_index);
-//		if (ft_atoi(stack_a[0]) > ft_atoi(stack_a[1]))
-//			push_swap_a(stack_a, SA);
 		sort_stack_a_top(stack_a);
 		i++;
 	}
@@ -178,7 +175,7 @@ int	compare_index(int i, int j, int k, int med)
 
 	x = standardize_index(i, med);
 	y = standardize_index(j, med);
-	z = standardize_index(k, med); 
+	z = standardize_index(k, med);
 	if ((x <= y || y == -1) && (x <= z || z == -1))
 		return (i);
 	else if (y <= x && (y <= z || z == -1) && y != -1)
