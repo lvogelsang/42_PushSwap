@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:27:50 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/12/05 15:28:08 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/12/13 15:17:52 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	error_non_integer(char **stack_a, int len)
 	}
 	return (0);
 }
+
+// This needs to be fixed:
 
 int	error_min_max_integer(char **stack_a, int len)
 {
