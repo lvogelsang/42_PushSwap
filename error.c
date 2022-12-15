@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:27:50 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/12/13 15:17:52 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/12/15 13:20:17 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ int	error_non_integer(char **stack_a, int len)
 	return (0);
 }
 
-// This needs to be fixed:
-
 int	error_min_max_integer(char **stack_a, int len)
 {
 	int	i;
@@ -56,7 +54,8 @@ int	error_min_max_integer(char **stack_a, int len)
 	while (i < len)
 	{
 		num = ft_atoi(stack_a[i]);
-		if (ft_itoa(num)[0] != stack_a[i][0])
+		if (ft_strlen(ft_itoa(num)) != ft_strlen(stack_a[i]) \
+			|| ft_strncmp(ft_itoa(num), stack_a[i], ft_strlen(stack_a[i])) != 0)
 			return (1);
 		i++;
 	}

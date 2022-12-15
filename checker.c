@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:12:00 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/12/13 15:14:07 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/12/15 13:08:27 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,17 +78,17 @@ int	execute_operation(char **stack_a, char **stack_b)
 
 int	validate_operation(char *instruction)
 {
-	if (ft_strncmp(instruction, "sa\0", 3) == 0 \
-		|| ft_strncmp(instruction, "ss\0", 3) == 0 \
-		|| ft_strncmp(instruction, "sb\0", 3) == 0 \
-		|| ft_strncmp(instruction, "pa\0", 3) == 0 \
-		|| ft_strncmp(instruction, "pb\0", 3) == 0 \
-		|| ft_strncmp(instruction, "ra\0", 3) == 0 \
-		|| ft_strncmp(instruction, "rb\0", 3) == 0 \
-		|| ft_strncmp(instruction, "rr\0", 3) == 0 \
-		|| ft_strncmp(instruction, "rra\0", 4) == 0 \
-		|| ft_strncmp(instruction, "rrr\0", 4) == 0 \
-		|| ft_strncmp(instruction, "rrb\0", 4) == 0)
+	if (ft_strncmp(instruction, "sa\n", 3) == 0 \
+		|| ft_strncmp(instruction, "ss\n", 3) == 0 \
+		|| ft_strncmp(instruction, "sb\n", 3) == 0 \
+		|| ft_strncmp(instruction, "pa\n", 3) == 0 \
+		|| ft_strncmp(instruction, "pb\n", 3) == 0 \
+		|| ft_strncmp(instruction, "ra\n", 3) == 0 \
+		|| ft_strncmp(instruction, "rb\n", 3) == 0 \
+		|| ft_strncmp(instruction, "rr\n", 3) == 0 \
+		|| ft_strncmp(instruction, "rra\n", 4) == 0 \
+		|| ft_strncmp(instruction, "rrr\n", 4) == 0 \
+		|| ft_strncmp(instruction, "rrb\n", 4) == 0)
 	{
 		return (1);
 	}
@@ -98,26 +98,26 @@ int	validate_operation(char *instruction)
 
 void	push_swap_operation(char *instruction, char **stack_a, char **stack_b)
 {
-	if (ft_strncmp(instruction, "sa\0", 3) == 0 \
-		|| ft_strncmp(instruction, "ss\0", 3) == 0)
+	if (ft_strncmp(instruction, "sa\n", 3) == 0 \
+		|| ft_strncmp(instruction, "ss\n", 3) == 0)
 		swap(stack_a);
-	if (ft_strncmp(instruction, "sb\0", 3) == 0 \
-		|| ft_strncmp(instruction, "ss\0", 3) == 0)
+	if (ft_strncmp(instruction, "sb\n", 3) == 0 \
+		|| ft_strncmp(instruction, "ss\n", 3) == 0)
 		swap(stack_b);
-	if (ft_strncmp(instruction, "pa\0", 3) == 0)
+	if (ft_strncmp(instruction, "pa\n", 3) == 0)
 		push_a(stack_b, stack_a);
-	if (ft_strncmp(instruction, "pb\0", 3) == 0)
+	if (ft_strncmp(instruction, "pb\n", 3) == 0)
 		push_b(stack_a, stack_b);
-	if (ft_strncmp(instruction, "ra\0", 3) == 0 \
-		|| ft_strncmp(instruction, "rr\0", 3) == 0)
+	if (ft_strncmp(instruction, "ra\n", 3) == 0 \
+		|| ft_strncmp(instruction, "rr\n", 3) == 0)
 		rotate(stack_a);
-	if (ft_strncmp(instruction, "rb\0", 3) == 0 \
-		|| ft_strncmp(instruction, "rr\0", 3) == 0)
+	if (ft_strncmp(instruction, "rb\n", 3) == 0 \
+		|| ft_strncmp(instruction, "rr\n", 3) == 0)
 		rotate(stack_b);
-	if (ft_strncmp(instruction, "rra\0", 4) == 0 \
-		|| ft_strncmp(instruction, "rrr\0", 4) == 0)
+	if (ft_strncmp(instruction, "rra\n", 4) == 0 \
+		|| ft_strncmp(instruction, "rrr\n", 4) == 0)
 		reverse_rotate(stack_a);
-	if (ft_strncmp(instruction, "rrb\0", 4) == 0 \
-		|| ft_strncmp(instruction, "rrr\0", 4) == 0)
+	if (ft_strncmp(instruction, "rrb\n", 4) == 0 \
+		|| ft_strncmp(instruction, "rrr\n", 4) == 0)
 		reverse_rotate(stack_b);
 }
