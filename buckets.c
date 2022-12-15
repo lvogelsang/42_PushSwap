@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:29:21 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/12/08 11:19:47 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/12/15 17:09:32 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	buckets(char **stack_a, char **stack_b, int bucket_size)
 
 	create_bucket(stack_a, stack_b, bucket_size);
 	bucket_size = get_bucket_size(stack_a);
-	if (stack_length(stack_a) <= bucket_size)
+	if (stack_length(stack_a) <= bucket_size || stack_sorted_ascend(stack_a) == 1)
 	{
 		while (stack_sorted_ascend(stack_a) == 0)
 		{
@@ -48,6 +48,8 @@ void	buckets(char **stack_a, char **stack_b, int bucket_size)
 	}		
 	else
 		push_swap(stack_a, stack_b);
+	//------
+//	ft_printf("Finish bucket\n");
 }
 
 void	create_bucket(char **stack_a, char **stack_b, int bucket_size)
@@ -103,6 +105,183 @@ void	push_bucket_item_exec(char **stack_a, char **stack_b, int i, int op)
 	ft_printf("pb\n");
 }
 
+void	sort_buckets(char **stack_a, char **stack_b, int bucket_size)
+{
+	int	best_index;
+	int	index_a;
+	int	sort_technique;
+	int	i;
+	int	a;
+	int	b;
+
+	i = 0;
+	while (i < bucket_size)
+	{
+		best_index = get_best_index(stack_a, stack_b);
+		index_a = get_target_position_stack_a(stack_a, ft_atoi(stack_b[best_index]));
+		sort_technique = get_sort_technique(index_a, best_index, stack_length(stack_a), stack_length(stack_b));
+		a = ft_atoi(stack_a[index_a]);
+		b = ft_atoi(stack_b[best_index]);
+		//------
+//		ft_printf("B_I: %d A_I: %d SORT: %d A: %d B: %d\n", best_index, index_a, sort_technique, a, b);
+		//-----
+		if (sort_technique == ROTATE)
+			rotate_a_b(stack_a, stack_b, a, b);
+		else if (sort_technique == REVERSE_ROTATE)
+			reverse_rotate_a_b(stack_a, stack_b, a, b);
+		else if (sort_technique == A_ROTATE_B_REVERSE)
+			rotate_a_reverse_b(stack_a, stack_b, a, b);
+		else if (sort_technique == A_REVERSE_B_ROTATE)
+			reverse_a_rotate_b(stack_a, stack_b, a, b);
+		push_a(stack_b, stack_a);
+		ft_printf("pa\n");
+		i++;
+	}
+	sort_stack_a(stack_a);
+}
+
+int	get_best_index(char **stack_a, char **stack_b)
+{
+	int	best_index;
+	int	index_b;
+	int	min_costs;
+	int	index_a;
+	int	costs;
+
+	index_b = 0;
+	min_costs = stack_length(stack_b) / 2 + stack_length(stack_a) / 2 + 2;
+	best_index = 0;
+	while (index_b < stack_length(stack_b))
+	{
+		index_a = get_target_position_stack_a(stack_a, ft_atoi(stack_b[index_b]));
+		costs = get_costs_total(index_a, index_b, stack_length(stack_a), stack_length(stack_b));
+		//------
+//		ft_printf("BEST: %d B: %d A: %d COSTS: %d\n", best_index, index_b, index_a, costs);
+		if (costs < min_costs)
+		{
+			min_costs = costs;
+			best_index = index_b;
+		}
+		index_b++;
+	}
+	return (best_index);
+}
+
+int	get_target_position_stack_a(char **stack_a, int	b)
+{
+	int	index_a;
+	int	i;
+
+	index_a = 0;
+	while (index_a + 1 < stack_length(stack_a))
+	{
+		if (b < stack_min_value(stack_a))
+		{
+			i = 0;
+			while (ft_atoi(stack_a[i]) != stack_max_value(stack_a))
+				i++;
+			index_a = i;
+			break;
+		}
+		if (b > ft_atoi(stack_a[index_a]) && b < ft_atoi(stack_a[index_a + 1]))
+			break;
+		index_a++;
+	}
+	return (index_a);
+}
+
+int	get_costs_total(int index_a, int index_b, int len_a, int len_b)
+{
+	int	costs_stack_a_rotate;
+	int	costs_stack_a_reverse;
+	int	costs_stack_b_rotate;
+	int	costs_stack_b_reverse;
+	int	costs_total;
+
+	costs_stack_a_rotate = index_a + 1;
+	costs_stack_a_reverse = len_a - index_a - 1;
+	costs_stack_b_rotate = index_b;
+	costs_stack_b_reverse = len_b - index_b;
+	//-----
+//	ft_printf("A_ROT: %d A_REV: %d B_ROT: %d B_REV: %d\n", costs_stack_a_rotate, costs_stack_a_reverse, costs_stack_b_rotate, costs_stack_b_reverse);
+	costs_total = get_costs_total_two(costs_stack_a_rotate, costs_stack_a_reverse, \
+	costs_stack_b_rotate, costs_stack_b_reverse);
+	return (costs_total);
+}
+
+int	get_costs_total_two(int costs_stack_a_rotate, int costs_stack_a_reverse, \
+	int costs_stack_b_rotate, int costs_stack_b_reverse)
+{
+	int	costs_rotate;
+	int	costs_reverse;
+	int	costs_a_rotate_b_reverse;
+	int	costs_a_reverse_b_rotate;
+
+	costs_rotate = costs_stack_a_rotate - costs_stack_b_rotate;
+	if (costs_rotate < 0)
+		costs_rotate = costs_rotate * -1;
+	costs_reverse = costs_stack_a_reverse - costs_stack_b_reverse;
+	if (costs_reverse < 0)
+		costs_reverse = costs_reverse * -1;
+	costs_a_rotate_b_reverse = costs_stack_a_rotate + costs_stack_b_reverse;
+	costs_a_reverse_b_rotate = costs_stack_a_reverse + costs_stack_b_rotate;
+	if (costs_rotate <= costs_reverse && costs_rotate <= costs_a_rotate_b_reverse \
+		&& costs_rotate <= costs_a_reverse_b_rotate)
+		return (costs_rotate);
+	else if (costs_reverse <= costs_a_rotate_b_reverse \
+		&& costs_reverse <= costs_a_reverse_b_rotate)
+		return (costs_reverse);
+	else if (costs_a_rotate_b_reverse <= costs_a_reverse_b_rotate)
+		return (costs_a_rotate_b_reverse);
+	else
+		return (costs_a_reverse_b_rotate);
+}
+
+int	get_sort_technique(int index_a, int index_b, int len_a, int len_b)
+{
+	int	costs_stack_a_rotate;
+	int	costs_stack_a_reverse;
+	int	costs_stack_b_rotate;
+	int	costs_stack_b_reverse;
+	int	sort_technique;
+
+	costs_stack_a_rotate = index_a + 1;
+	costs_stack_a_reverse = len_a - index_a - 1;
+	costs_stack_b_rotate = index_b;
+	costs_stack_b_reverse = len_b - index_b;
+	sort_technique = get_sort_technique_two(costs_stack_a_rotate, costs_stack_a_reverse, \
+	costs_stack_b_rotate, costs_stack_b_reverse);
+	return (sort_technique);
+}
+
+int	get_sort_technique_two(int costs_stack_a_rotate, int costs_stack_a_reverse, \
+	int costs_stack_b_rotate, int costs_stack_b_reverse)
+{
+	int	costs_rotate;
+	int	costs_reverse;
+	int	costs_a_rotate_b_reverse;
+	int	costs_a_reverse_b_rotate;
+
+	costs_rotate = costs_stack_a_rotate - costs_stack_b_rotate;
+	if (costs_rotate < 0)
+		costs_rotate = costs_rotate * -1;
+	costs_reverse = costs_stack_a_reverse - costs_stack_b_reverse;
+	if (costs_reverse < 0)
+		costs_reverse = costs_reverse * -1;
+	costs_a_rotate_b_reverse = costs_stack_a_rotate + costs_stack_b_reverse;
+	costs_a_reverse_b_rotate = costs_stack_a_reverse + costs_stack_b_rotate;
+	if (costs_rotate <= costs_reverse && costs_rotate <= costs_a_rotate_b_reverse \
+		&& costs_rotate <= costs_a_reverse_b_rotate)
+		return (ROTATE);
+	else if (costs_reverse <= costs_a_rotate_b_reverse \
+		&& costs_reverse <= costs_a_reverse_b_rotate)
+		return (REVERSE_ROTATE);
+	else if (costs_a_rotate_b_reverse <= costs_a_reverse_b_rotate)
+		return (A_ROTATE_B_REVERSE);
+	else
+		return (A_REVERSE_B_ROTATE);
+}
+/*
 void	sort_buckets(char **stack_a, char **stack_b, int bucket_size)
 {
 	int	i;
@@ -203,4 +382,4 @@ void	sort_stack_a_top(char **stack_a)
 		else
 			push_swap_a(stack_a, RRA);
 	}
-}
+}*/

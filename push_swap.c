@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 12:18:45 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/12/05 20:06:37 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:59:52 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ int	main(int argc, char **argv)
 	if (stack_b == NULL)
 		return (0);
 	push_swap(stack_a, stack_b);
+	//---------
+	sort_stack_a(stack_a);
+	//--------
 	free (stack_a);
 	free (stack_b);
 	return (0);
@@ -63,5 +66,27 @@ void	push_swap(char **stack_a, char **stack_b)
 		}
 		else
 			sort_short(stack_a, stack_b);
+	}
+}
+
+//---------------------------------------
+void	sort_stack_a(char **stack_a)
+{
+	int	i;
+	int	med;
+
+	i = 0;
+	while (ft_atoi(stack_a[i]) != stack_min_value(stack_a))
+		i++;
+	med = stack_length(stack_a) / 2;
+	if (i <= med)
+	{
+		while (ft_atoi(stack_a[0]) != stack_min_value(stack_a))
+			push_swap_a(stack_a, RA);
+	}
+	if (i > med)
+	{
+		while (ft_atoi(stack_a[0]) != stack_min_value(stack_a))
+			push_swap_a(stack_a, RRA);
 	}
 }
