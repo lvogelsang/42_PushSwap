@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:29:21 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/12/15 17:09:32 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/12/15 17:24:51 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,12 +217,14 @@ int	get_costs_total_two(int costs_stack_a_rotate, int costs_stack_a_reverse, \
 	int	costs_a_rotate_b_reverse;
 	int	costs_a_reverse_b_rotate;
 
-	costs_rotate = costs_stack_a_rotate - costs_stack_b_rotate;
-	if (costs_rotate < 0)
-		costs_rotate = costs_rotate * -1;
-	costs_reverse = costs_stack_a_reverse - costs_stack_b_reverse;
-	if (costs_reverse < 0)
-		costs_reverse = costs_reverse * -1;
+	if (costs_stack_a_rotate > costs_stack_b_rotate)
+		costs_rotate = costs_stack_a_rotate;
+	else
+		costs_rotate = costs_stack_b_rotate;
+	if (costs_stack_a_reverse > costs_stack_b_reverse)
+		costs_reverse = costs_stack_a_reverse;
+	else
+		costs_reverse = costs_stack_b_reverse;
 	costs_a_rotate_b_reverse = costs_stack_a_rotate + costs_stack_b_reverse;
 	costs_a_reverse_b_rotate = costs_stack_a_reverse + costs_stack_b_rotate;
 	if (costs_rotate <= costs_reverse && costs_rotate <= costs_a_rotate_b_reverse \
@@ -262,12 +264,14 @@ int	get_sort_technique_two(int costs_stack_a_rotate, int costs_stack_a_reverse, 
 	int	costs_a_rotate_b_reverse;
 	int	costs_a_reverse_b_rotate;
 
-	costs_rotate = costs_stack_a_rotate - costs_stack_b_rotate;
-	if (costs_rotate < 0)
-		costs_rotate = costs_rotate * -1;
-	costs_reverse = costs_stack_a_reverse - costs_stack_b_reverse;
-	if (costs_reverse < 0)
-		costs_reverse = costs_reverse * -1;
+	if (costs_stack_a_rotate > costs_stack_b_rotate)
+		costs_rotate = costs_stack_a_rotate;
+	else
+		costs_rotate = costs_stack_b_rotate;
+	if (costs_stack_a_reverse > costs_stack_b_reverse)
+		costs_reverse = costs_stack_a_reverse;
+	else
+		costs_reverse = costs_stack_b_reverse;
 	costs_a_rotate_b_reverse = costs_stack_a_rotate + costs_stack_b_reverse;
 	costs_a_reverse_b_rotate = costs_stack_a_reverse + costs_stack_b_rotate;
 	if (costs_rotate <= costs_reverse && costs_rotate <= costs_a_rotate_b_reverse \
