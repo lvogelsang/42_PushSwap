@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 12:18:45 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/12/15 16:59:52 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/12/16 11:17:54 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,15 @@ int	main(int argc, char **argv)
 	//---------
 	sort_stack_a(stack_a);
 	//--------
-	free (stack_a);
+/*	int	i = 0;
+	while (i < stack_length(stack_a))
+	{
+		ft_printf("%s ", stack_a[i]);
+		i++;
+	}
+	if (stack_sorted_ascend(stack_a) == 1)
+		ft_printf("OK:)");
+*/	free (stack_a);
 	free (stack_b);
 	return (0);
 }

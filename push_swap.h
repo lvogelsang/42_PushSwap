@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:23:45 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/12/15 16:15:19 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/12/16 11:24:47 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	sort_stack_a_top(char **stack_a);*/
 
 //-------
 
-int		get_best_index(char **stack_a, char **stack_b);
+int		get_best_index(char **stack_a, char **stack_b, int bucket_size);
 int		get_target_position_stack_a(char **stack_a, int b);
 int		get_costs_total(int index_a, int index_b, int len_a, int len_b);
 int	get_costs_total_two(int costs_stack_a_rotate, int costs_stack_a_reverse, \

@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:29:21 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/12/15 17:24:51 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/12/16 11:31:27 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	get_bucket_size(char **stack_a)
 	int	len;
 
 	len = stack_length(stack_a);
-	bucket_size = 5;
+	bucket_size = 20;
 	if (len > 5 && len <= 50)
 		bucket_size = len / 2;
 	else if (len > 50 && len <= 80)
@@ -117,13 +117,35 @@ void	sort_buckets(char **stack_a, char **stack_b, int bucket_size)
 	i = 0;
 	while (i < bucket_size)
 	{
-		best_index = get_best_index(stack_a, stack_b);
+		best_index = get_best_index(stack_a, stack_b, bucket_size);
 		index_a = get_target_position_stack_a(stack_a, ft_atoi(stack_b[best_index]));
 		sort_technique = get_sort_technique(index_a, best_index, stack_length(stack_a), stack_length(stack_b));
 		a = ft_atoi(stack_a[index_a]);
 		b = ft_atoi(stack_b[best_index]);
 		//------
-//		ft_printf("B_I: %d A_I: %d SORT: %d A: %d B: %d\n", best_index, index_a, sort_technique, a, b);
+/*		if (b == 58)
+		{
+			ft_printf("B_I: %d A_I: %d SORT: %d A: %d B: %d\n", best_index, index_a, sort_technique, a, b);
+			int x = 0;
+			while (x < stack_length(stack_a))
+			{
+				ft_printf("%s ", stack_a[x]);
+				x++;
+			}
+			ft_printf("\n");
+			x = 0;
+			while (x < stack_length(stack_b))
+			{
+				ft_printf("%s ", stack_a[x]);
+				x++;
+			}
+			x = 0;
+			while (ft_atoi(stack_a[x]) != 57)
+				x++;
+			ft_printf("\nIndex: %d\n", x);
+			ft_printf("Bucket Size: %d\n", bucket_size);
+			ft_printf("Len A: %d\n", stack_length(stack_a));
+		}*/
 		//-----
 		if (sort_technique == ROTATE)
 			rotate_a_b(stack_a, stack_b, a, b);
@@ -136,11 +158,13 @@ void	sort_buckets(char **stack_a, char **stack_b, int bucket_size)
 		push_a(stack_b, stack_a);
 		ft_printf("pa\n");
 		i++;
+		//-----
+//		ft_printf("sort_buckets loop");
 	}
-	sort_stack_a(stack_a);
+//	sort_stack_a(stack_a);
 }
 
-int	get_best_index(char **stack_a, char **stack_b)
+int	get_best_index(char **stack_a, char **stack_b, int bucket_size)
 {
 	int	best_index;
 	int	index_b;
@@ -151,8 +175,22 @@ int	get_best_index(char **stack_a, char **stack_b)
 	index_b = 0;
 	min_costs = stack_length(stack_b) / 2 + stack_length(stack_a) / 2 + 2;
 	best_index = 0;
-	while (index_b < stack_length(stack_b))
+	//-----
+/*	int	i;
+
+	i = 0;
+	while (i < stack_length(stack_a))
 	{
+		ft_printf("%s ", stack_a[i]);
+		i++;
+	}*/
+	//-----
+//	while (index_b < stack_length(stack_b))
+	while (index_b < bucket_size && index_b < stack_length(stack_b))
+	{
+		//-----
+	//	ft_printf("\nB: %d\n", index_b);
+		//-----
 		index_a = get_target_position_stack_a(stack_a, ft_atoi(stack_b[index_b]));
 		costs = get_costs_total(index_a, index_b, stack_length(stack_a), stack_length(stack_b));
 		//------
@@ -164,6 +202,25 @@ int	get_best_index(char **stack_a, char **stack_b)
 		}
 		index_b++;
 	}
+	// TEST TEST TEST
+	index_b = stack_length(stack_b) - 1;
+//	if (bucket_size > stack_length(stack_b))
+//		bucket_size = 0;
+	while (index_b > stack_length(stack_b) - bucket_size && index_b >= 0)
+	{
+	//	ft_printf("B Index: %d B Len: %d\n", index_b, stack_length(stack_b));
+		index_a = get_target_position_stack_a(stack_a, ft_atoi(stack_b[index_b]));
+	//	ft_printf("Seg\n");
+		costs = get_costs_total(index_a, index_b, stack_length(stack_a), stack_length(stack_b));
+		//------
+//		ft_printf("BEST: %d B: %d A: %d COSTS: %d\n", best_index, index_b, index_a, costs);
+		if (costs < min_costs)
+		{
+			min_costs = costs;
+			best_index = index_b;
+		}
+		index_b--;
+	}
 	return (best_index);
 }
 
@@ -173,20 +230,44 @@ int	get_target_position_stack_a(char **stack_a, int	b)
 	int	i;
 
 	index_a = 0;
+	//-------
+//	ft_printf("Len A: %d\n", stack_length(stack_a));
+//	while (index_a + 1 < stack_length(stack_a))
 	while (index_a + 1 < stack_length(stack_a))
 	{
+		//----
 		if (b < stack_min_value(stack_a))
 		{
 			i = 0;
 			while (ft_atoi(stack_a[i]) != stack_max_value(stack_a))
 				i++;
 			index_a = i;
+//			ft_printf("1\n");
 			break;
 		}
 		if (b > ft_atoi(stack_a[index_a]) && b < ft_atoi(stack_a[index_a + 1]))
+		{
+//			ft_printf("2\n");
 			break;
+		}
+		if (b > ft_atoi(stack_a[stack_length(stack_a) - 2 - index_a]) && b < ft_atoi(stack_a[stack_length(stack_a) - 1 - index_a]))
+		{
+			index_a = stack_length(stack_a) - 2 - index_a;
+//			ft_printf("3\n");
+			break;
+		}
+		if (b > ft_atoi(stack_a[stack_length(stack_a) - 1]) && b < ft_atoi(stack_a[0]))
+		{
+			index_a = stack_length(stack_a) - 1;
+//			ft_printf("4\n");
+			break;
+		}
+	//	ft_printf("Index A: %d\n", index_a);
 		index_a++;
+		//-----
+//		ft_printf("Index A: %d\n", index_a);
 	}
+//	ft_printf("\nHello\n");
 	return (index_a);
 }
 
