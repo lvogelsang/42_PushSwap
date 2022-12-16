@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 12:18:45 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/12/16 11:17:54 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/12/16 13:50:40 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,8 @@ int	main(int argc, char **argv)
 	if (stack_b == NULL)
 		return (0);
 	push_swap(stack_a, stack_b);
-	//---------
-	sort_stack_a(stack_a);
-	//--------
-/*	int	i = 0;
-	while (i < stack_length(stack_a))
-	{
-		ft_printf("%s ", stack_a[i]);
-		i++;
-	}
-	if (stack_sorted_ascend(stack_a) == 1)
-		ft_printf("OK:)");
-*/	free (stack_a);
+	rotate_stack_a(stack_a);
+	free (stack_a);
 	free (stack_b);
 	return (0);
 }
@@ -69,7 +59,7 @@ void	push_swap(char **stack_a, char **stack_b)
 		else if (stack_length(stack_a) > bucket_size)
 		{
 			buckets(stack_a, stack_b, bucket_size);
-			sort_buckets(stack_a, stack_b, bucket_size);
+			index_sort(stack_a, stack_b, bucket_size);
 			break ;
 		}
 		else
@@ -77,8 +67,7 @@ void	push_swap(char **stack_a, char **stack_b)
 	}
 }
 
-//---------------------------------------
-void	sort_stack_a(char **stack_a)
+void	rotate_stack_a(char **stack_a)
 {
 	int	i;
 	int	med;

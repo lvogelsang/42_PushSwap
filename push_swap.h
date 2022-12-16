@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:23:45 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/12/16 11:24:47 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/12/16 13:42:45 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int		error_duplicate(char **stack_a, int len);
 // PUSH_SWAP.C
 
 void	push_swap(char **stack_a, char **stack_b);
+void	rotate_stack_a(char **stack_a);
 
 // STACK_ATTRIBUTES.C
 
@@ -70,35 +71,30 @@ void	buckets(char **stack_a, char **stack_b, int bucket_size);
 void	create_bucket(char **stack_a, char **stack_b, int bucket_size);
 void	push_bucket_item(char **stack_a, char **stack_b, int min, int max);
 void	push_bucket_item_exec(char **stack_a, char **stack_b, int i, int op);
-void	sort_buckets(char **stack_a, char **stack_b, int bucket_size);
-/*void	sort_buckets_exec(char **stack_a, char **stack_b, int med, \
-int max_index);
-int		bucket_max_values(char **stack_b, int med);
-int		compare_index(int i, int j, int k, int med);
-int		standardize_index(int index, int med);
-void	sort_stack_a_top(char **stack_a);*/
-
-//-------
-
-int		get_best_index(char **stack_a, char **stack_b, int bucket_size);
-int		get_target_position_stack_a(char **stack_a, int b);
-int		get_costs_total(int index_a, int index_b, int len_a, int len_b);
-int	get_costs_total_two(int costs_stack_a_rotate, int costs_stack_a_reverse, \
-	int costs_stack_b_rotate, int costs_stack_b_reverse);
-int	get_sort_technique(int index_a, int index_b, int len_a, int len_b);
-int	get_sort_technique_two(int costs_stack_a_rotate, int costs_stack_a_reverse, \
-	int costs_stack_b_rotate, int costs_stack_b_reverse);
 
 // INDEX_SORT.C
+
+void	index_sort(char **stack_a, char **stack_b, int bucket_size);
+void	index_sort_exec(char **stack_a, char **stack_b, int index_a, \
+int index_b);
+int		get_best_index(char **stack_a, char **stack_b, int bucket_size);
+int		get_best_index_two(char **stack_a, char **stack_b, int index_best, \
+int index_b);
+int		get_target_position_stack_a(char **stack_a, int b);
+int		get_target_position_stack_a_two(char **stack_a, int b, int index_a);
+int		get_total_costs(int index_a, int index_b, int len_a, int len_b);
+int		get_total_costs_two(int costs_stack_a_rotate, \
+int costs_stack_a_reverse, int costs_stack_b_rotate, int costs_stack_b_reverse);
+int		get_sort_technique(int index_a, int index_b, int len_a, int len_b);
+int		get_sort_technique_two(int costs_stack_a_rotate, \
+int costs_stack_a_reverse, int costs_stack_b_rotate, int costs_stack_b_reverse);
+
+// INDEX_SORT_EXECUTION.C
 
 void	rotate_a_b(char **stack_a, char **stack_b, int a, int b);
 void	reverse_rotate_a_b(char **stack_a, char **stack_b, int a, int b);
 void	rotate_a_reverse_b(char **stack_a, char **stack_b, int a, int b);
 void	reverse_a_rotate_b(char **stack_a, char **stack_b, int a, int b);
-
-void	sort_stack_a(char **stack_a);
-
-//--------
 
 // SORT_SHORT.C
 

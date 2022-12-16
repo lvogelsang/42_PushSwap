@@ -6,7 +6,7 @@
 #    By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/05 14:46:58 by lvogelsa          #+#    #+#              #
-#    Updated: 2022/12/15 16:16:18 by lvogelsa         ###   ########.fr        #
+#    Updated: 2022/12/16 13:43:51 by lvogelsa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
-SRCS = buckets.c error.c index_sort.c operations.c push_swap.c push_swap_execution.c \
-	sort_short.c stack.c stack_attributes.c
+SRCS = buckets.c error.c index_sort.c index_sort_execution.c operations.c \
+	push_swap.c push_swap_execution.c sort_short.c stack.c stack_attributes.c
 
 BONUS_SRCS = checker.c \error.c \operations.c \stack.c \stack_attributes.c
 
